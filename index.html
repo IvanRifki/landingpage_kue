@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 
+<!-- Halaman ini telah disempurnakan oleh Gemini Code Assist -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,18 @@
 
     <style>
         /* CSS untuk Tema Pink & Modern */
-
+        
         /* Variabel Warna (Tema Pink) */
         :root {
             --primary-pink: #FF69B4;
             /* Pink yang lebih kuat untuk Aksen */
             --light-pink: #FFF0F5;
             /* Pink Lavender Blush (Sangat Muda) */
+            --secondary-pink: #FFD1DC; /* Pink pucat untuk border & highlight */
             --dark-text: #333;
+            --medium-text: #555;
             --light-text: #FFFFFF;
-            --border-color: #FFD1DC;
-            /* Pink Pucat untuk border */
+            --border-color: #eee;
         }
 
         /* Reset & Font Modern */
@@ -29,7 +31,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             background-color: var(--light-pink);
             color: var(--dark-text);
@@ -40,7 +42,7 @@
 
         /* Kontainer Utama */
         .container {
-            max-width: 900px;
+            max-width: 960px;
             width: 100%;
             margin: 20px;
             background-color: var(--light-text);
@@ -54,13 +56,36 @@
             background-color: var(--primary-pink);
             color: var(--light-text);
             padding: 20px 30px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         header h1 {
             margin: 0;
             font-size: 2rem;
             font-weight: 700;
+        }
+
+        /* Navigasi */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 600;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        nav a:hover {
+            border-bottom-color: var(--light-text);
         }
 
         /* Konten di dalam kontainer */
@@ -144,6 +169,29 @@
             }
         }
 
+        /* Dots/indicators */
+        .carousel-dots {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: var(--secondary-pink);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: var(--primary-pink);
+        }
+
+
         /* --- Akhir Fitur Carousel --- */
 
 
@@ -161,7 +209,7 @@
 
         .product-description p {
             font-size: 1rem;
-            color: #555;
+            color: var(--medium-text);
         }
 
         /* --- Fitur Tombol Pembelian --- */
@@ -189,7 +237,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 50px; /* Membuat tombol lebih bulat (pill shape) */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             color: var(--light-text);
             border: none;
@@ -220,6 +268,15 @@
 
         /* Responsive untuk HP */
         @media (min-width: 600px) {
+            header {
+                text-align: left;
+            }
+
+            header h1 {
+                margin-right: 40px; /* Jarak antara judul dan navigasi */
+            }
+
+
             .cta-buttons {
                 flex-direction: row;
                 /* Tombol menyamping di layar lebih besar */
@@ -234,6 +291,13 @@
             }
         }
 
+        @media (max-width: 599px) {
+            header {
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -241,14 +305,22 @@
             padding: 20px;
             font-size: 0.9rem;
             color: #777;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
+    <header class="container">
         <h1>🍪 Mama's Cookies 🍪</h1>
+        <nav>
+            <ul>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#pesan">Pesan</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="container">
@@ -266,19 +338,24 @@
                     <img src="https://placehold.co/800x450/FFDAB9/333?text=Putri+Salju" alt="Kue Putri Salju">
                 </div>
 
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <!-- Tombol Navigasi Carousel -->
+                <a class="prev">&#10094;</a>
+                <a class="next">&#10095;</a>
+            </div>
+            <!-- Indikator Dots -->
+            <div class="carousel-dots">
+                <span class="dot" data-slide-to="1"></span>
+                <span class="dot" data-slide-to="2"></span>
+                <span class="dot" data-slide-to="3"></span>
             </div>
 
-            <section class="product-description">
+            <section id="produk" class="product-description">
                 <h2>Kue Kering Premium Buatan Rumah</h2>
                 <p>Dibuat dengan bahan-bahan pilihan terbaik, tanpa pengawet, dan resep warisan keluarga. Cita rasa yang
                     tak terlupakan untuk momen spesial Anda.</p>
             </section>
 
-            <hr style="border:0; border-top: 1px solid var(--border-color); margin: 30px 0;">
-
-            <section class="cta-section">
+            <section id="pesan" class="cta-section">
                 <h3>Pesan Sekarang Melalui:</h3>
 
                 <div class="cta-buttons">
@@ -299,40 +376,76 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Nama Toko Kue Anda. All rights reserved.</p>
+    <footer id="kontak">
+        <p>&copy; 2025 Mama's Cookies. All rights reserved.</p>
     </footer>
 
 
     <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
+        document.addEventListener('DOMContentLoaded', function () {
+            let slideIndex = 1;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+            let slideInterval;
 
-        // Kontrol Next/Previous
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
+            // Tampilkan slide pertama saat halaman dimuat
+            showSlides(slideIndex);
+            startSlideShow();
 
-        // Fungsi utama carousel
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-
-            if (n > slides.length) {
-                slideIndex = 1; // Kembali ke slide 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length; // Pergi ke slide terakhir
+            // Fungsi untuk memulai auto-play
+            function startSlideShow() {
+                slideInterval = setInterval(() => {
+                    plusSlides(1);
+                }, 4000); // Ganti gambar setiap 4 detik
             }
 
-            // Sembunyikan semua slide
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+            // Fungsi untuk mereset interval
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startSlideShow();
             }
 
-            // Tampilkan slide yang aktif
-            slides[slideIndex - 1].style.display = "block";
-        }
+            // Event listener untuk tombol next/prev
+            document.querySelector('.next').addEventListener('click', () => {
+                plusSlides(1);
+                resetInterval();
+            });
+            document.querySelector('.prev').addEventListener('click', () => {
+                plusSlides(-1);
+                resetInterval();
+            });
+
+            // Event listener untuk dots
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].addEventListener('click', function() {
+                    currentSlide(i + 1);
+                    resetInterval();
+                });
+            }
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+        });
     </script>
 
 </body>
