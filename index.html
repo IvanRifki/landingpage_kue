@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Kue Kering Anda - Premium & Lezat</title>
+
+    <style>
+        /* CSS untuk Tema Pink & Modern */
+
+        /* Variabel Warna (Tema Pink) */
+        :root {
+            --primary-pink: #FF69B4;
+            /* Pink yang lebih kuat untuk Aksen */
+            --light-pink: #FFF0F5;
+            /* Pink Lavender Blush (Sangat Muda) */
+            --dark-text: #333;
+            --light-text: #FFFFFF;
+            --border-color: #FFD1DC;
+            /* Pink Pucat untuk border */
+        }
+
+        /* Reset & Font Modern */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-pink);
+            color: var(--dark-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 20px;
+            background-color: var(--light-text);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-pink);
+            color: var(--light-text);
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Konten di dalam kontainer */
+        .content {
+            padding: 30px;
+        }
+
+        /* --- Fitur Carousel --- */
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+        }
+
+        .mySlides {
+            display: none;
+            /* Sembunyikan semua slide by default */
+        }
+
+        /* Tampilkan slide pertama */
+        .mySlides:first-child {
+            display: block;
+        }
+
+        .carousel-container img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            /* Batasi tinggi gambar */
+            object-fit: cover;
+            /* Agar gambar proporsional */
+            vertical-align: middle;
+        }
+
+        /* Tombol Next & Previous */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(255, 105, 180, 0.7);
+            /* Latar belakang pink transparan */
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(255, 105, 180, 1);
+            /* Warna solid saat hover */
+        }
+
+        /* Efek Fade */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* --- Akhir Fitur Carousel --- */
+
+
+        /* Deskripsi Produk */
+        .product-description {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-description h2 {
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .product-description p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* --- Fitur Tombol Pembelian --- */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            /* Tombol tersusun ke bawah */
+            gap: 15px;
+            /* Jarak antar tombol */
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: var(--light-text);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Warna khusus per tombol */
+        .btn-whatsapp {
+            background-color: #25D366;
+            /* Hijau WhatsApp */
+        }
+
+        .btn-tokopedia {
+            background-color: #42B549;
+            /* Hijau Tokopedia */
+        }
+
+        .btn-shopee {
+            background-color: #EE4D2D;
+            /* Orange Shopee */
+        }
+
+        /* Responsive untuk HP */
+        @media (min-width: 600px) {
+            .cta-buttons {
+                flex-direction: row;
+                /* Tombol menyamping di layar lebih besar */
+                justify-content: center;
+            }
+
+            .btn {
+                flex: 1;
+                /* Lebar tombol sama rata */
+                max-width: 250px;
+                /* Batasi lebar tombol */
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍪 Mama's Cookies 🍪</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="content">
+
+            <div class="carousel-container">
+                <div class="mySlides fade">
+                    <img src="https://placehold.co/800x450/FFC0CB/333?text=Kue+Nastar" alt="Kue Nastar">
+                </div>
+                <div class="mySlides fade">
+                    <img src="https://placehold.co/800x450/FFB6C1/333?text=Kastengel+Keju" alt="Kue Kastengel">
+                </div>
+                <div class="mySlides fade">
+                    <img src="https://placehold.co/800x450/FFDAB9/333?text=Putri+Salju" alt="Kue Putri Salju">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <section class="product-description">
+                <h2>Kue Kering Premium Buatan Rumah</h2>
+                <p>Dibuat dengan bahan-bahan pilihan terbaik, tanpa pengawet, dan resep warisan keluarga. Cita rasa yang
+                    tak terlupakan untuk momen spesial Anda.</p>
+            </section>
+
+            <hr style="border:0; border-top: 1px solid var(--border-color); margin: 30px 0;">
+
+            <section class="cta-section">
+                <h3>Pesan Sekarang Melalui:</h3>
+
+                <div class="cta-buttons">
+                    <a href="#LINK_WHATSAPP_ANDA" target="_blank" class="btn btn-whatsapp">
+                        📱 Pesan via WhatsApp
+                    </a>
+
+                    <a href="#LINK_TOKOPEDIA_ANDA" target="_blank" class="btn btn-tokopedia">
+                        🛒 Beli di Tokopedia
+                    </a>
+
+                    <a href="#LINK_SHOPEE_ANDA" target="_blank" class="btn btn-shopee">
+                        🛍️ Beli di Shopee
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Nama Toko Kue Anda. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Kontrol Next/Previous
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Fungsi utama carousel
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+
+            if (n > slides.length) {
+                slideIndex = 1; // Kembali ke slide 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length; // Pergi ke slide terakhir
+            }
+
+            // Sembunyikan semua slide
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Tampilkan slide yang aktif
+            slides[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+</body>
+
+</html>
